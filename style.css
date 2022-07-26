@@ -154,11 +154,3 @@ body {
 .ball div {
     border: none;
 }
-
-
-/* Controllers */
-#controls {
-    padding: 1em;
-    display: flex;
-    justify-content: space-around;
-}
