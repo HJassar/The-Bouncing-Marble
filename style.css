@@ -1,0 +1,164 @@
+:root {
+    --width: 80vw;
+    --height: 80vh;
+    --altitude: calc(var(--height)*0.8);
+    --color: #8180FF;
+
+    --xDuration: 4000ms;
+    --yDuration: 1500ms;
+}
+
+body {
+    background-color: #2e2e2e;
+    color: white;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#container {
+    width: var(--width);
+    height: var(--height);
+    border: dashed .3vmin white;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ball {
+    width: 10vmin;
+    height: 10vmin;
+    position: absolute;
+    bottom: 0;
+}
+
+.ball div {
+    width: 100%;
+    height: 100%;
+}
+
+.translateY {
+    border: thin solid blue;
+    animation: bounceY var(--yDuration) infinite ease-out alternate;
+
+}
+
+.translateX {
+    border: thin solid yellow;
+    border-right-width: thick;
+    animation: bounceX var(--xDuration) infinite linear;
+}
+
+.rotateZ {
+    border: dotted thick white;
+    animation: rotateZ calc(var(--yDuration)*2) ease-out infinite;
+}
+
+.reflection {
+    position: absolute;
+    top: -3%;
+    /* Visually enhances the separation of the reflection from the underlying material */
+    left: 0%;
+    border-radius: 50%;
+    background: radial-gradient(circle at top, white 0%, transparent 50%, transparent 100%);
+    z-index: 1;
+    filter: blur(0.2vmin);
+    transform: rotate(90deg);
+    animation: reflection var(--xDuration) infinite linear;
+}
+
+.material {
+    border-radius: 50%;
+    background: radial-gradient(circle at 100%,
+            rgb(224, 250, 131),
+            var(--color) 50%);
+}
+
+#ball .material {
+    box-shadow: 0 0 1vmin rgb(224, 250, 131);
+}
+
+@keyframes bounceY {
+    0% {
+        transform: translateY(0)
+    }
+
+    100% {
+        transform: translateY(calc(-1*var(--altitude) + 100%));
+    }
+}
+
+@keyframes bounceX {
+    0% {
+        transform: translateX(0) scaleX(1);
+    }
+
+    49.9999999% {
+        transform: translateX(calc(var(--width) - 100%)) scaleX(1);
+    }
+
+    50% {
+        transform: translateX(calc(var(--width) - 100%)) scaleX(-1);
+    }
+
+    100% {
+        transform: translateX(0) scaleX(-1);
+    }
+
+}
+
+
+@keyframes rotateZ {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(720deg);
+    }
+}
+
+@keyframes reflection {
+    0% {
+        transform: rotate(90deg) scaleX(1)
+    }
+
+    49.9999999% {
+        transform: rotate(0deg) scaleX(1)
+    }
+
+    50% {
+        transform: rotate(0) scaleX(-1)
+    }
+
+    100% {
+        transform: rotate(-90deg) scaleX(-1)
+    }
+}
+
+/* Trails */
+.trail {
+    z-index: calc(-1 * var(--count));
+    filter: blur(calc(.9vmin * var(--count)));
+    opacity: calc(1 - var(--count)/10);
+}
+
+.trail * {
+    animation-delay: calc(50ms * var(--count));
+}
+
+.trail .material {
+    background: var(--color);
+}
+
+.ball div {
+    border: none;
+}
+
+
+/* Controllers */
+#controls {
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+}

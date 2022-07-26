@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Bouncing Marble!</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="controls">
+      <div>
+        <label for="all-control">All </label>
+        <input
+          type="range"
+          name="allcontrol"
+          id="all-control"
+          aria-label="Full Playback Control"
+        />
+      </div>
+      <div>
+        <label for="x-control">X </label>
+        <input
+          type="range"
+          name="xcontrol"
+          id="x-control"
+          aria-label="X Velocity Control"
+        />
+      </div>
+      <div>
+        <label for="y-control">Y </label>
+        <input
+          type="range"
+          name="ycontrol"
+          id="y-control"
+          aria-label="Y Velocity Control"
+        />
+      </div>
+    </div>
+    <div id="container">
+      <div id="ball" class="ball">
+        <div class="translateX">
+          <div class="translateY">
+            <div class="reflection"></div>
+            <div class="rotateZ">
+              <div class="material"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- First Trail -->
+      <div class="ball trail" style="--count: 1">
+        <div class="translateX">
+          <div class="translateY">
+            <div class="material"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Second Trail -->
+      <div class="ball trail" style="--count: 2">
+        <div class="translateX">
+          <div class="translateY">
+            <div class="material"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Third Trail -->
+      <div class="ball trail" style="--count: 3">
+        <div class="translateX">
+          <div class="translateY">
+            <div class="material"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js" type="module"></script>
+</html>
